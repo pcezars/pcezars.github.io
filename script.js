@@ -4,6 +4,10 @@ var buttonDescriptografar = document.getElementById('button2');
 var textoResultado = document.getElementById("resultado");
 var copiarTexto = document.getElementById('resultado');
 var buttonCopiar = document.getElementById('copiar');
+var img = document.getElementById('imgRet');
+var alert1 = document.getElementById('alert1');
+var alert2 = document.getElementById('alert2');
+var mostrarTexto = document.getElementById('mostrarTexto');
 
 function criptografar(){
     var textoPuro = input.value.toLowerCase();
@@ -15,10 +19,11 @@ function criptografar(){
     .replaceAll("u", "ufat")
     
     if(textoPuro == ''){
-        document.getElementById('alert1').innerHTML = 'Por favor, digite um texto para criptografar.';
-        document.getElementById('alert2').style.display = 'none';
+        alert1.classList.add('vermelho');
+        alert1.innerHTML = 'Por favor, digite um texto para criptografar.';
+        alert2.style.display = 'none';
     } else {
-        document.getElementById('mostrarTexto').style.display = '';
+        mostrarTexto.style.display = '';
         textoResultado.innerHTML = textoSaida;
     }
 }
@@ -33,10 +38,11 @@ function descriptografar(){
     .replaceAll("ufat", "u")
     
     if(textoPuro == ''){
-        document.getElementById('alert1').innerHTML = 'Por favor, digite um texto para descriptografar.';
-        document.getElementById('alert2').style.display = 'none';
+        alert1.classList.add('vermelho');
+        alert1.innerHTML = 'Por favor, digite um texto para descriptografar.';
+        alert2.style.display = 'none';
     } else {
-        document.getElementById('mostrarTexto').style.display = '';
+        mostrarTexto.style.display = '';
         textoResultado.innerHTML = textoSaida;
     }
 }
@@ -44,6 +50,10 @@ function descriptografar(){
 function copiar(){
     copiarTexto.select();
     navigator.clipboard.writeText(copiarTexto.value)
+    mostrarTexto.style.display = 'none';
+    alert2.style.display = 'hidden';
+    alert1.classList.remove('vermelho');
+    alert1.innerHTML = 'Mensagem Copiada.'
 }
 
 buttonCriptografar.onclick = criptografar;

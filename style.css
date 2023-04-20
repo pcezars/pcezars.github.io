@@ -254,3 +254,7 @@ footer a:visited {
     outline: none;
     resize: none;
 }
+
+.vermelho {
+    color: red;
+}
