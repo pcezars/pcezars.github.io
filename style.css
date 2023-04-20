@@ -129,20 +129,35 @@ body {
 }
 
 footer {
+    display: flex;
     position: absolute;
     text-align: center;
-    top: 850px;
-    width: 1440px;
-    margin: auto;
+    bottom: 0;
+    width: 100%;
+    margin: 20px auto;
+    justify-content: center;
+    background: #495057;
 }
 
 footer p {
+    margin: 15px 0 0 10px;
+    color: #FFFFFF;
+    font-family: 'Inter';
+    font-size: 12px;
+}
+footer a {
+    transition: 0.5s all;
     padding: 10px;
+    margin-top: 2px;
+}
+
+footer a:hover {
+    transform: scale(1.6);
 }
 
 footer a:visited {
     text-decoration: none;
-    color: black;
+    color: #FFFFFF;
 }
 
 #frame1{
