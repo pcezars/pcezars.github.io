@@ -1,116 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conversão do R$</title>
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
-
+    <title>Codificador e decodificador de texto</title>
+    <link rel="stylesheet" href="reset.css">
     <script src="https://kit.fontawesome.com/b93f9b3c01.js" crossorigin="anonymous"></script>
-
-    
-    <style>
-        body,html{
-            height:100%;
-        }
-
-        body {
-            background: #ccc;
-        }
-    </style>
-
-    <script>
-        function converterMoeda(valor){
-            let real = valor;
-            let url = 'https://economia.awesomeapi.com.br/json/last/USD-BRL,EUR-BRL';
-
-            let exchange = new XMLHttpRequest();
-            exchange.open('GET', url)
-
-            exchange.onreadystatechange = () => {
-                if (exchange.readyState == 4 && exchange.status == 200) {
-                    let dadosExchangeText = exchange.responseText;
-                    let dadosExchangeObj = JSON.parse(dadosExchangeText)
-
-                    let dolar = Number(dadosExchangeObj.USDBRL['bid']).toFixed(2)
-                    let euro = Number(dadosExchangeObj.EURBRL['bid']).toFixed(2)
-                    
-                    document.getElementById('dolar').value = Number(real / dolar).toFixed(2);
-                    document.getElementById('euro').value = Number(real / euro).toFixed(2);
-                }
-            }
-
-            exchange.send();
-        }
-
-        function obterValores(){
-            let url = 'https://economia.awesomeapi.com.br/json/last/USD-BRL,EUR-BRL';
-
-            let exchange = new XMLHttpRequest();
-            exchange.open('GET', url)
-
-            exchange.onreadystatechange = () => {
-                if (exchange.readyState == 4 && exchange.status == 200) {
-                    let dadosExchangeText = exchange.responseText;
-                    let dadosExchangeObj = JSON.parse(dadosExchangeText)
-                    
-                    let dolar = Number(dadosExchangeObj.USDBRL['bid']).toFixed(2)
-                    let euro = Number(dadosExchangeObj.EURBRL['bid']).toFixed(2)
-
-                    console.log(dadosExchangeObj)
-
-                    document.getElementById('valor_dolar').innerHTML = 'Valor em US: (' + dolar + ')';
-                    document.getElementById('valor_euro').innerHTML = 'Valor em Euro: (' + euro + ')';
-
-                    let real = document.getElementById('valor_real').value = 1;
-
-                    document.getElementById('dolar').value = Number(real / dolar).toFixed(2);
-                    document.getElementById('euro').value = Number(real / euro).toFixed(2);
-                }
-            }
-
-            exchange.send();
-        }
-    </script>
-
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap" rel="stylesheet">
 </head>
-<body onload="obterValores()">
+<body>
+    
+    <header>
+        <nav class="frame6">
+            <p class="logo"><img class="vector" src="img/logo.png"></p>
+        </nav>
+    </header>
 
-    <nav class="navbar navbar-dark bg-dark mb-4">
-        <div class="container justify-content-center">
-            <div class="navbar-brand mb-0 h1">
-                <strong>Conversor de moedas em tempo real</strong>
+    <main>
+        <div id="areaTexto">
+            <textarea id="textoCriptografar" class="texto" placeholder="Digite seu Texto"></textarea>
+        </div>
+
+        <div class="retangulo">
+            <div>
+                <img id="imgRet" src="img/High quality products 1 1@3x.png">
+            </div>
+            <div id="info">
+                <p id="alert1" class="msg">Nenhuma mensagem encontrada</p>
+                <p id="alert2" class="msg2">Digite um texto que você deseja criptografar ou descriptografar.</p>
+            </div>
+            <div id="mostrarTexto" style="display: none;" >
+                <textarea id="resultado"></textarea>
+                <button id="copiar"><p class="textoCopiar">Copiar</p></button>
             </div>
         </div>
-    </nav>
 
-    <div class="container h-100">
-        <div class="row h-100 justify-content-center align-items-center">
-          <div class="col-sm-3">
-            <div class="card border border-light">
-                
-                <div class="card-body">
-                    <center><i class="fa-solid fa-circle-dollar-to-slot fa-4x"></i></center>
-                    <hr>
-                    <p>
-                        <h5>Valor em R$: </h4>
-                        <input id="valor_real" type="number" onkeyup="converterMoeda(this.value)">
-                    </p>
-                    <p>
-                        <h5 id="valor_dolar"></h4>
-                        <input type="text" id="dolar" readonly disabled>
-                    </p>
-                    <p>
-                        <h5 id="valor_euro"></h4>
-                        <input type="text" id="euro" readonly disabled>
-                    </p>
-                </div>
-            </div>
-          </div>              
+        <div id="frame1">
+            <img src="img/Vector.png">
+            <p>Apenas letras minúsculas e sem acento.</p>
         </div>
-      </div>
+    
+        <div class="frame3">
+            <button id="button1"><p class="textoBotaoc">Criptografar</p></button>
+            <button id="button2"><p class="textoBotaod">Descriptografar</p></button>
+        </div>
+    </main>
+
+    <footer>
+        <p>Desenvolvido por Paulo Cézar</p>
+        <a href="https://github.com/pcezars"><i class="fa-brands fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/pcezars/"><i class="fa-brands fa-linkedin"></i></a>
+    </footer>
+
+    <script src="script.js"></script>
     
 </body>
 </html>
